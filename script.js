@@ -223,7 +223,7 @@ async function gameOver() {
     clearInterval(timer);
 
     await fetch(
-        "http://localhost:3000/save-score",
+        "https://historical-figure-quiz.onrender.com/save-score",
         {
             method: "POST",
 
@@ -250,7 +250,7 @@ async function loadRanking() {
 
     const response =
         await fetch(
-            "http://localhost:3000/ranking"
+            "https://historical-figure-quiz.onrender.com/"
         );
 
     const rankings =
