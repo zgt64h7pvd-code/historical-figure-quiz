@@ -1,73 +1,61 @@
 const express = require("express");
 const cors = require("cors");
-const sqlite3 = require("sqlite3").verbose();
+const Database = require("better-sqlite3");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-const db = new sqlite3.Database("./scores.db");
+const db = new Database("scores.db");
 
-db.serialize(() => {
-
-    db.run(`
-        CREATE TABLE IF NOT EXISTS ranking (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            score INTEGER
-        )
-    `);
-
-});
+db.prepare(`
+    CREATE TABLE IF NOT EXISTS ranking (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        score INTEGER
+    )
+`).run();
 
 app.post("/save-score", (req, res) => {
 
     const { name, score } = req.body;
 
-    db.run(
-        "INSERT INTO ranking (name, score) VALUES (?, ?)",
-        [name, score],
-        (err) => {
+    try {
 
-            if (err) {
+        db.prepare(
+            "INSERT INTO ranking (name, score) VALUES (?, ?)"
+        ).run(name, score);
 
-                console.log(err);
+        res.send("保存成功");
 
-                res.status(500).send("保存失敗");
+    } catch (error) {
 
-            } else {
+        console.log(error);
 
-                res.send("保存成功");
+        res.status(500).send("保存失敗");
 
-            }
-
-        }
-    );
+    }
 
 });
 
 app.get("/ranking", (req, res) => {
 
-    db.all(
-        "SELECT name, score FROM ranking ORDER BY score DESC LIMIT 10",
-        [],
-        (err, rows) => {
+    try {
 
-            if (err) {
+        const rows = db.prepare(
+            "SELECT name, score FROM ranking ORDER BY score DESC LIMIT 10"
+        ).all();
 
-                console.log(err);
+        res.json(rows);
 
-                res.status(500).send("取得失敗");
+    } catch (error) {
 
-            } else {
+        console.log(error);
 
-                res.json(rows);
+        res.status(500).send("取得失敗");
 
-            }
-
-        }
-    );
+    }
 
 });
 
