@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #111;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#start-screen {
+    margin-top: 100px;
+}
+
+.container {
+    display: none;
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+#hint-box {
+    background-color: #222;
+    padding: 30px;
+    border-radius: 10px;
+    min-height: 80px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: crimson;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input {
+    width: 80%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+}
+
+#ranking {
+    margin-top: 40px;
+}

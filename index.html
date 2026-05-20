@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>戦国武将当てゲーム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="start-screen">
+
+        <h1>戦国武将当てゲーム</h1>
+
+        <input type="text"
+               id="nickname"
+               placeholder="ニックネーム">
+
+        <button id="start-btn">
+            START
+        </button>
+
+        <div id="ranking">
+            <h2>ランキング</h2>
+            <ol id="ranking-list"></ol>
+        </div>
+
+    </div>
+
+    <div class="container" id="game-screen">
+
+        <h1>戦国武将当てゲーム</h1>
+
+        <div id="hint-box">
+            ヒントがここに表示されます
+        </div>
+
+        <button id="hint-btn">
+            ヒントを見る
+        </button>
+
+        <br>
+
+        <input type="text"
+               id="answer-input"
+               placeholder="武将名を入力">
+
+        <br>
+
+        <button id="answer-btn">
+            回答する
+        </button>
+
+        <p id="result"></p>
+
+        <p id="timer">
+            残り時間 : 30
+        </p>
+
+        <p id="miss">
+            ミス : 0 / 2
+        </p>
+
+        <audio id="correct-sound" src="correct.mp3"></audio>
+        <audio id="wrong-sound" src="wrong.mp3"></audio>
+
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
