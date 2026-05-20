@@ -250,7 +250,7 @@ async function loadRanking() {
 
     const response =
         await fetch(
-            "https://historical-figure-quiz.onrender.com/"
+            "https://historical-figure-quiz.onrender.com/ranking"
         );
 
     const rankings =
